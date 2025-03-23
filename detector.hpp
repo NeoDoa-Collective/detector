@@ -57,32 +57,32 @@ namespace detect
 
 #if defined(_WIN32) || defined(WIN32) || defined(_WIN64)
     template <>
-    constexpr bool is_os_v<windows_t> = true;
+    inline constexpr bool is_os_v<windows_t> = true;
 #endif
 
 #if defined(__linux__) && !defined(__android__)
     template <>
-    constexpr bool is_os_v<linux_t> = true;
+    inline constexpr bool is_os_v<linux_t> = true;
 #endif
 
 #ifdef TARGET_OS_MAC
     template <>
-    constexpr bool is_os_v<macos_t> = true;
+    inline constexpr bool is_os_v<macos_t> = true;
 #endif
 
 #if defined(TARGET_IPHONE_SIMULATOR) || defined(TARGET_OS_IPHONE)
     template <>
-    constexpr bool is_os_v<ios_t> = true;
+    inline constexpr bool is_os_v<ios_t> = true;
 #endif
 
 #ifdef __android__
     template <>
-    constexpr bool is_os_v<android_t> = true;
+    inline constexpr bool is_os_v<android_t> = true;
 #endif
 
 #if !defined(__linux__) && defined(__unix__)
     template <>
-    constexpr bool is_os_v<linux_t> = true;
+    inline constexpr bool is_os_v<linux_t> = true;
 #endif
 
     static constexpr bool is_windows_v = is_os_v<windows_t>;
@@ -127,22 +127,22 @@ namespace detect
 
 #if defined(__GNUC__) && !defined(__clang__)
     template <>
-    constexpr bool is_compiler_v<gcc_t> = true;
+    inline constexpr bool is_compiler_v<gcc_t> = true;
 #endif
 
 #ifdef __clang__
     template <>
-    constexpr bool is_compiler_v<clang_t> = true;
+    inline constexpr bool is_compiler_v<clang_t> = true;
 #endif
 
 #if defined(_MSC_VER) && !defined(__clang__)
     template <>
-    constexpr bool is_compiler_v<msvc_t> = true;
+    inline constexpr bool is_compiler_v<msvc_t> = true;
 #endif
 
 #if defined(__MINGW32__) || !defined(__MINGW64__)
     template <>
-    constexpr bool is_compiler_v<mingw_t> = true;
+    inline constexpr bool is_compiler_v<mingw_t> = true;
 #endif
 
     static constexpr bool is_gcc_v = is_compiler_v<gcc_t>;
@@ -189,19 +189,19 @@ namespace detect
     static constexpr bool is_std_v = false;
 
     template <>
-    constexpr bool is_std_v<cxx_11> = DETECTED_CXX == 201103L;
+    inline constexpr bool is_std_v<cxx_11> = DETECTED_CXX == 201103L;
 
     template <>
-    constexpr bool is_std_v<cxx_14> = DETECTED_CXX == 201402L;
+    inline constexpr bool is_std_v<cxx_14> = DETECTED_CXX == 201402L;
 
     template <>
-    constexpr bool is_std_v<cxx_17> = DETECTED_CXX == 201703L;
+    inline constexpr bool is_std_v<cxx_17> = DETECTED_CXX == 201703L;
 
     template <>
-    constexpr bool is_std_v<cxx_20> = DETECTED_CXX == 202002L;
+    inline constexpr bool is_std_v<cxx_20> = DETECTED_CXX == 202002L;
 
     template <>
-    constexpr bool is_std_v<cxx_23> = DETECTED_CXX == 202302L;
+    inline constexpr bool is_std_v<cxx_23> = DETECTED_CXX == 202302L;
 
     static constexpr bool is_cxx_11 = is_std_v<cxx_11>;
     static constexpr bool is_cxx_14 = is_std_v<cxx_14>;
@@ -234,12 +234,12 @@ namespace detect
 
 #if defined(_DEBUG) || defined(DEBUG)
     template <>
-    constexpr bool is_build_v<debug_t> = true;
+    inline constexpr bool is_build_v<debug_t> = true;
 #endif
 
 #if defined(NDEBUG) || !(defined(DEBUG) && defined(_DEBUG))
     template <>
-    constexpr bool is_build_v<release_t> = true;
+    inline constexpr bool is_build_v<release_t> = true;
 #endif
 
     static constexpr bool is_debug_v = is_build_v<debug_t>;
@@ -310,52 +310,52 @@ namespace detect
 
 #if defined(_M_IX86_FP) && (_M_IX86_FP == 1)
     template <>
-    constexpr bool is_simd_v<x86sse_t> = true;
+    inline constexpr bool is_simd_v<x86sse_t> = true;
 #endif
 
 #if defined(_M_IX86_FP) && (_M_IX86_FP == 2)
     template <>
-    constexpr bool is_simd_v<x86sse2_t> = true;
+    inline constexpr bool is_simd_v<x86sse2_t> = true;
 #endif
 
 #ifdef __SSE__
     template <>
-    constexpr bool is_simd_v<sse_t> = true;
+    inline constexpr bool is_simd_v<sse_t> = true;
 #endif
 
 #if defined(__SSE2__) || defined(__x86_x64__) || defined(DETECTED_X86_64)
     template <>
-    constexpr bool is_simd_v<sse2_t> = true;
+    inline constexpr bool is_simd_v<sse2_t> = true;
 #endif
 
 #ifdef __SSE3__
     template <>
-    constexpr bool is_simd_v<sse3_t> = true;
+    inline constexpr bool is_simd_v<sse3_t> = true;
 #endif
 
 #ifdef __SSSE3__
     template <>
-    constexpr bool is_simd_v<ssse3_t> = true;
+    inline constexpr bool is_simd_v<ssse3_t> = true;
 #endif
 
 #ifdef __SSE4_1__
     template <>
-    constexpr bool is_simd_v<sse4_1_t> = true;
+    inline constexpr bool is_simd_v<sse4_1_t> = true;
 #endif
 
 #ifdef __SSE4_2__
     template <>
-    constexpr bool is_simd_v<sse4_2_t> = true;
+    inline constexpr bool is_simd_v<sse4_2_t> = true;
 #endif
 
 #ifdef __AVX__
     template <>
-    constexpr bool is_simd_v<avx_t> = true;
+    inline constexpr bool is_simd_v<avx_t> = true;
 #endif
 
 #ifdef __AVX2__
     template <>
-    constexpr bool is_simd_v<avx2_t> = true;
+    inline constexpr bool is_simd_v<avx2_t> = true;
 #endif
 
     static constexpr bool is_x86_sse_v = is_simd_v<x86sse_t>;
